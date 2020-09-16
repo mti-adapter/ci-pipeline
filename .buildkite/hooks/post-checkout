@@ -1,4 +1,3 @@
-GoLandIntelliJ IDEA
 #!/bin/bash -ue
 
 mkdir .ci
