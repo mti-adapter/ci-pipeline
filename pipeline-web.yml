@@ -1,0 +1,12 @@
+env:
+  DRY_RUN: false # set to true to disable publishing releases
+  PROJECT: node-timer-source
+
+steps:
+  - name: ":hammer: :linux:"
+    command: ".ci/steps/tests.sh"
+    artifact_paths: junit-*.xml
+    plugins:
+      docker-compose#v3.0.0:
+        config: .ci/docker-compose.yml
+        run: agent

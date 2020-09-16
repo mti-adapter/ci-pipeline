@@ -1,0 +1,5 @@
+GoLandIntelliJ IDEA
+#!/bin/bash -ue
+
+mkdir .ci
+git clone --single-branch "git@github.com:mti-adapter/ci-pipeline.git" ".ci"
