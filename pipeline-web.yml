@@ -9,4 +9,3 @@ steps:
     plugins:
       docker-compose#v3.0.0:
         config: .ci/pipeline-web-docker-compose.yml
-        run: agent
