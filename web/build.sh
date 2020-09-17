@@ -3,4 +3,6 @@ set -euo pipefail
 
 echo '+++ Running npm build'
 
-ls -la /app/.ci
+npm install
+npm run build -- --output-path=./dist
+ls -la ./dist
