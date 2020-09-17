@@ -1,8 +1,0 @@
-env:
-  DRY_RUN: false # set to true to disable publishing releases
-  PROJECT: web-test
-
-steps:
-  - name: ":hammer: :pipeline:"
-    command: buildkite-agent pipeline upload .ci/pipeline-web.yml
-  - wait
