@@ -5,7 +5,7 @@ echo '+++ Merging web pipeline steps'
 
 
 merge_steps_yaml() {
-    value=$(<pipeline-web-docker-compose.yml)
+    value=$(<.ci/pipeline-web-docker-compose.yml)
     echo "$value"
 }
 
