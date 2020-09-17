@@ -19,7 +19,7 @@ MINOR_VERSION_KEY="minor_version"
 # Get the current minor version number or fail
 MINOR_VERSION_NUMBER=$(buildkite-agent meta-data get "${MINOR_VERSION_KEY}" --default "fail")
 # If failed then set to 0
-if [[ MINOR_VERSION_NUMBER == "fail" ]]; then
+if [[ ${MINOR_VERSION_NUMBER} == "fail" ]]; then
     echo '+++ Setting initial minor version number to 0'
     MINOR_VERSION_NUMBER=0
     buildkite-agent meta-data set "${MINOR_VERSION_KEY}" ${MINOR_VERSION_NUMBER}
