@@ -4,5 +4,5 @@ env:
 
 steps:
   - name: ":hammer: :pipeline:"
-    command: buildkite-agent pipeline upload ../pipeline-web.yml
+    command: buildkite-agent pipeline upload .ci/pipeline-web.yml
   - wait
