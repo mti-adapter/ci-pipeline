@@ -6,7 +6,6 @@ services:
     working_dir: /app
     volumes:
       - ../:/app
-      - ./:/.ci
     environment:
       - PROJECT
       - BUILDKITE_JOB_ID
