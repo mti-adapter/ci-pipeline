@@ -3,8 +3,10 @@ version: '3.4'
 services:
   agent:
     image: node:14.11.0-stretch-slim
+    working_dir: /app
     volumes:
       - ../:/app
+      - ./:/app
     environment:
       - PROJECT
       - BUILDKITE_JOB_ID
