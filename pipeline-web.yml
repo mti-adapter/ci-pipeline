@@ -3,7 +3,7 @@ env:
   PROJECT: node-timer-source
 
 steps:
-  - name: ":hammer: :linux:"
+  - name: ":angular: :jasmine:"
     command: ".ci/web/tests.sh"
     artifact_paths: "dist/*"
     plugins:
@@ -16,3 +16,15 @@ steps:
             - BUILDKITE_BUILD_ID
             - BUILDKITE_BUILD_NUMBER
   - wait
+  - name: ":angular: :hammer:"
+    command: ".ci/web/build.sh"
+    artifact_paths: "dist/*"
+    plugins:
+      - docker-compose#v3.5.0:
+          config: .ci/pipeline-web-docker-compose.yml
+          run: agent
+          env:
+            - PROJECT
+            - BUILDKITE_JOB_ID
+            - BUILDKITE_BUILD_ID
+            - BUILDKITE_BUILD_NUMBER
