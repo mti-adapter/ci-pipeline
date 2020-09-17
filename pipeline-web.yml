@@ -7,5 +7,5 @@ steps:
     command: "web/tests.sh"
     artifact_paths: "dist/*"
     plugins:
-      docker-compose#v3.0.0:
+      docker-compose#v3.5.0:
         config: .ci/pipeline-web-docker-compose.yml
