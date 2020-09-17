@@ -9,3 +9,8 @@ steps:
     plugins:
       docker-compose#v3.5.0:
         config: .ci/pipeline-web-docker-compose.yml
+        env:
+          - PROJECT
+          - BUILDKITE_JOB_ID
+          - BUILDKITE_BUILD_ID
+          - BUILDKITE_BUILD_NUMBER
