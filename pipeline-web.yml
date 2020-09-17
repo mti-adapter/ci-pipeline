@@ -1,7 +1,3 @@
-env:
-  DRY_RUN: false # set to true to disable publishing releases
-  PROJECT: node-timer-source
-
 steps:
   - name: ":angular: :jasmine:"
     command: ".ci/web/tests.sh"

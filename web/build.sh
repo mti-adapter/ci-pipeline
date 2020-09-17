@@ -28,8 +28,10 @@ fi
 # Increment version number
 MINOR_VERSION_NUMBER=${MINOR_VERSION_NUMBER}+1
 VERSION_NUMBER="${MAJOR_VERSION_NUMBER}.${MINOR_VERSION_NUMBER}.${BUILDKITE_BUILD_NUMBER}"
+echo "${MINOR_VERSION_NUMBER}" > version.txt
+echo "+++ Setting minor version number to ${MINOR_VERSION_NUMBER}"
+buildkite-agent artifact upload "version.txt" s3://mti-ci-artifacts/${PROJECT}.txt
 buildkite-agent meta-data set ${MINOR_VERSION_KEY} ${MINOR_VERSION_NUMBER}
-
 echo '+++ Running npm install'
 npm install
 npm install -g @angular/cli@~${NG_CLI_VERSION:-9.1.5}
