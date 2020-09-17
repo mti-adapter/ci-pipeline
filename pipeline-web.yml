@@ -9,7 +9,7 @@ steps:
     plugins:
       - docker-compose#v3.5.0:
           config: .ci/pipeline-web-docker-compose.yml
-          run: app
+          run: agent
           env:
             - PROJECT
             - BUILDKITE_JOB_ID
