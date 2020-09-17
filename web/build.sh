@@ -14,20 +14,20 @@ rm -rf ${TMP_DIRECTORY}
 mkdir -p ${TMP_DIRECTORY}
 mkdir ${DIST_DIRECTOR}
 
-# Fetch version artifact for this project, if it does not exist then
-# create it starting with MAJOR_VERSION.0.BUILD_NUMBER
+# Minor version key
 MINOR_VERSION_KEY="minor_version"
-MINOR_VERSION_KEY_EXISTS=$(buildkite-agent meta-data exists ${MINOR_VERSION_KEY})
-
-if [[ VERSION_KEY_EXISTS == 100 ]]; then
+# Get the current minor version number or fail
+MINOR_VERSION_NUMBER=$(buildkite-agent meta-data get "${MINOR_VERSION_KEY}" --default "fail")
+# If failed then set to 0
+if [[ MINOR_VERSION_NUMBER == "fail" ]]; then
     echo '+++ Setting initial minor version number to 0'
-    buildkite-agent meta-data set ${MINOR_VERSION_KEY} 0
+    MINOR_VERSION_NUMBER=0
+    buildkite-agent meta-data set "${MINOR_VERSION_KEY}" ${MINOR_VERSION_NUMBER}
 fi
 
-# get the current minor version number and increment it
-export MINOR_VERSION_NUMBER=$(buildkite-agent meta-data get "${MINOR_VERSION_KEY}")
-export MINOR_VERSION_NUMBER=${MINOR_VERSION_NUMBER}+1
-export VERSION_NUMBER="${MAJOR_VERSION_NUMBER}.${MINOR_VERSION_NUMBER}.${BUILDKITE_BUILD_NUMBER}"
+# Increment version number
+MINOR_VERSION_NUMBER=${MINOR_VERSION_NUMBER}+1
+VERSION_NUMBER="${MAJOR_VERSION_NUMBER}.${MINOR_VERSION_NUMBER}.${BUILDKITE_BUILD_NUMBER}"
 buildkite-agent meta-data set ${MINOR_VERSION_KEY} ${MINOR_VERSION_NUMBER}
 
 echo '+++ Running npm install'
