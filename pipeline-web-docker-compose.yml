@@ -5,7 +5,8 @@ services:
     image: node:14.11.0-stretch-slim
     working_dir: /app
     volumes:
-      - ./:/app
+      - ../:/app
+      - ./:/.ci
     environment:
       - PROJECT
       - BUILDKITE_JOB_ID
