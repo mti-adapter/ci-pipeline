@@ -4,7 +4,7 @@ services:
   agent:
     image: node:14.11.0-stretch-slim
     volumes:
-      - ./:/app
+      - ../:/app
     environment:
       - PROJECT
       - BUILDKITE_JOB_ID

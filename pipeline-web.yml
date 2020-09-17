@@ -15,3 +15,4 @@ steps:
             - BUILDKITE_JOB_ID
             - BUILDKITE_BUILD_ID
             - BUILDKITE_BUILD_NUMBER
+  - wait
