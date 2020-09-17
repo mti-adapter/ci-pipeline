@@ -5,8 +5,8 @@ env:
 steps:
   - name: ":hammer: :linux:"
     command: ".ci/steps/tests.sh"
-    artifact_paths: junit-*.xml
+    artifact_paths: "dist/*"
     plugins:
       docker-compose#v3.0.0:
-        config: .ci/docker-compose.yml
+        config: .ci/pipeline-web-docker-compose.yml
         run: agent
