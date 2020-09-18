@@ -24,11 +24,11 @@ docker login --username=${NEXUS_LOGIN_USER} --password=${NEXUS_LOGIN_PASSWORD} $
 
 # Download the package
 buildkite-agent artifact download "dist/${PACKAGE_NAME}.tar.gz" .
-mv dist/${PACKAGE_NAME}.tar.gz ./${PACKAGE_NAME}.tar.gz
-tar zxf ./${PACKAGE_NAME}.tar.gz --directory ./pkg/app
+#mv dist/${PACKAGE_NAME}.tar.gz ./${PACKAGE_NAME}.tar.gz
+#tar zxf ./${PACKAGE_NAME}.tar.gz --directory ./pkg/app
 
-#aws s3 cp s3://mti-ci-artifacts/85/dist/ptg-mobile-1.4.85.tar.gz ptg-mobile-1.4.85.tar.gz
-#tar zxf ./ptg-mobile-1.4.85.tar.gz --directory ./pkg/app
+aws s3 cp s3://mti-ci-artifacts/85/dist/ptg-mobile-1.4.85.tar.gz ptg-mobile-1.4.85.tar.gz
+tar zxf ./ptg-mobile-1.4.85.tar.gz --directory ./pkg/app
 
 cp .ci/web/Dockerfile ./pkg/Dockerfile
 cp .ci/web/nginx.conf ./pkg/nginx.conf
