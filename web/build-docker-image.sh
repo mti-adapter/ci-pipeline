@@ -20,7 +20,7 @@ mkdir -p pkg/app
 # Download the package
 #buildkite-agent artifact download "${PACKAGE_NAME}.tar.gz" .
 #tar -czxf ./${PACKAGE_NAME}.tar.gz --directory ./pkg/app
-aws s3 cp s3://mti-ci-artifacts/85 dist/ptg-mobile-1.4.85.tar.gz
+aws s3 cp s3://mti-ci-artifacts/85/dist/ptg-mobile-1.4.85.tar.gz ptg-mobile-1.4.85.tar.gz
 tar -czxf ./ptg-mobile-1.4.85.tar.gz --directory ./pkg/app
 cp ./web/Dockerfile ./pkg/Dockerfile
 docker build --tag ${IMAGE_TAG} ./pkg
