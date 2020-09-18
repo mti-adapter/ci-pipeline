@@ -9,4 +9,7 @@ merge_steps_yaml() {
     echo "$value"
 }
 
+# Set environments, process version upgrades etc.
+./.ci/shared/update-environment.sh
+
 merge_steps_yaml | buildkite-agent pipeline upload
