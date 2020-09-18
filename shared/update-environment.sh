@@ -3,9 +3,6 @@ set -euo pipefail
 
 echo "+++ Updating environment"
 
-# Env
-export BUILDKITE_S3_DEFAULT_REGION=eu-west-1
-
 # Provided major version or use 1
 MAJOR_VERSION_NUMBER=${MAJOR_VERSION:-1}
 # Version keys
@@ -31,7 +28,7 @@ fi
 # Write the new version to text file
 echo "${MINOR_VERSION_NUMBER}" > ${PROJECT}.txt
 # Store the new version number
-buildkite-agent artifact upload ${VERSION_FILENAME} s3://mti-ci-artifacts/versions
+buildkite-agent artifact upload ${VERSION_FILENAME} s3://mti-ci-artifacts/versions --job ${BUILDKITE_JOB_ID}
 # Store minor version in metadata
 buildkite-agent meta-data set ${MINOR_VERSION_KEY} ${MINOR_VERSION_NUMBER}
 # Build the full version number
