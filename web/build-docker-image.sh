@@ -20,7 +20,7 @@ rm -rf pkg
 mkdir -p pkg/app
 
 # Login to private registry
-docker login --username=${NEXUS_LOGIN_USER} --password=${NEXUS_LOGIN_PASSWORD} $DOCKER_HOST --email whale@docker.com
+docker login --username=${NEXUS_LOGIN_USER} --password=${NEXUS_LOGIN_PASSWORD} ${DOCKER_REGISTRY} --email admin@askmti.com
 
 # Download the package
 buildkite-agent artifact download "${PACKAGE_NAME}.tar.gz" .
