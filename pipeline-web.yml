@@ -12,22 +12,22 @@ steps:
             - BUILDKITE_BUILD_ID
             - BUILDKITE_BUILD_NUMBER
 
-#  - wait
-#
-#  - name: ":angular: Build & Package Artifacts"
-#    command: ".ci/web/build.sh"
-#    artifact_paths: "dist/*"
-#    plugins:
-#      - docker-compose#v3.5.0:
-#          config: .ci/pipeline-web-docker-compose.yml
-#          run: agent
-#          env:
-#            - PROJECT
-#            - BUILDKITE_JOB_ID
-#            - BUILDKITE_BUILD_ID
-#            - BUILDKITE_BUILD_NUMBER
-#
-#  - wait
-#
-#  - name: ":docker: Build & Publish Docker Image"
-#    command: ".ci/web/build-docker-image.sh"
+  - wait
+
+  - name: ":angular: Build & Package Artifacts"
+    command: ".ci/web/build.sh"
+    artifact_paths: "dist/*"
+    plugins:
+      - docker-compose#v3.5.0:
+          config: .ci/pipeline-web-docker-compose.yml
+          run: agent
+          env:
+            - PROJECT
+            - BUILDKITE_JOB_ID
+            - BUILDKITE_BUILD_ID
+            - BUILDKITE_BUILD_NUMBER
+
+  - wait
+
+  - name: ":docker: Build & Publish Docker Image"
+    command: ".ci/web/build-docker-image.sh"
