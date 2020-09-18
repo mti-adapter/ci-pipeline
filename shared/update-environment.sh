@@ -5,7 +5,7 @@ echo "+++ Updating environment"
 
 # Provided major version or use 1
 MAJOR_VERSION_NUMBER=${MAJOR_VERSION:-1}
-DOCKER_REGISTRY_HOST=${DOCKER_REGISTRY:-"containers.amphoratech.net"}
+DOCKER_REGISTRY_HOST=${DOCKER_REGISTRY:-"containers.amphoratech.net/mti"}
 # Metadata keys
 MINOR_VERSION_KEY="minor_version"
 FULL_VERSION_KEY="full_version"
