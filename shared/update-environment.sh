@@ -3,6 +3,9 @@ set -euo pipefail
 
 echo "+++ Updating environment"
 
+# Env
+export BUILDKITE_S3_DEFAULT_REGION=eu-west-1
+
 # Provided major version or use 1
 MAJOR_VERSION_NUMBER=${MAJOR_VERSION:-1}
 # Version keys
