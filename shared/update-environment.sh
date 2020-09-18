@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+set -euo pipefail
 
 echo "+++ Updating environment"
 
@@ -10,7 +10,7 @@ MINOR_VERSION_KEY="minor_version"
 FULL_VERSION_KEY="full_version"
 VERSION_FILENAME="${PROJECT}.txt"
 # Get the current minor version number or fail
-buildkite-agent artifact download s3://mti-ci-artifacts/versions/${VERSION_FILENAME} .
+buildkite-agent artifact download s3://mti-ci-artifacts/versions/${VERSION_FILENAME} . || true
 MINOR_VERSION_NUMBER=$(<.ci/pipeline-web.yml --default "fail")
 # If failed then set to 0
 if [[ ${MINOR_VERSION_NUMBER} == "fail" ]]; then
