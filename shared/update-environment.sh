@@ -10,7 +10,9 @@ MINOR_VERSION_KEY="minor_version"
 FULL_VERSION_KEY="full_version"
 VERSION_FILENAME="${PROJECT}.txt"
 # Get the current minor version number or fail
+export BUILDKITE_ARTIFACT_UPLOAD_DESTINATION="s3://mti-ci-artifacts"
 ! buildkite-agent artifact download versions/${VERSION_FILENAME} .
+export BUILDKITE_ARTIFACT_UPLOAD_DESTINATION="s3://mti-ci-artifacts/$BUILDKITE_JOB_ID"
 MINOR_VERSION_NUMBER=$(cat ${VERSION_FILENAME} || echo "fail")
 # If failed then set to 0
 if [[ ${MINOR_VERSION_NUMBER} == "fail" ]]; then
