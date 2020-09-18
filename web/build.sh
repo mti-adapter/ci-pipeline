@@ -23,7 +23,6 @@ npm install
 npm install -g @angular/cli@~${NG_CLI_VERSION:-9.1.5}
 echo '+++ Running npm build'
 npm run build -- --output-path=${TMP_DIRECTORY}
-echo 'Generating artifact'
 cd ${TMP_DIRECTORY}
 tar -zcf ${BASE_DIRECTORY}/dist/${PACKAGE_FILENAME}-${VERSION_NUMBER}.tar.gz .
 cd ${BASE_DIRECTORY}
