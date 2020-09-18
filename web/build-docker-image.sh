@@ -23,5 +23,6 @@ mkdir -p pkg/app
 aws s3 cp s3://mti-ci-artifacts/85/dist/ptg-mobile-1.4.85.tar.gz ptg-mobile-1.4.85.tar.gz
 tar zxf ./ptg-mobile-1.4.85.tar.gz --directory ./pkg/app
 cp .ci/web/Dockerfile ./pkg/Dockerfile
+cp .ci/web/nginx.conf ./pkg/nginx.conf
 docker build --tag ${IMAGE_TAG} ./pkg
 docker push ${IMAGE_TAG}
