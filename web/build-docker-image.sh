@@ -20,14 +20,14 @@ rm -rf pkg
 mkdir -p pkg/app
 
 # Login to private registry
-docker login --username=${NEXUS_LOGIN_USER} --password=${NEXUS_LOGIN_PASSWORD} ${DOCKER_REGISTRY} --email admin@askmti.com
+docker login --username=${NEXUS_LOGIN_USER} --password=${NEXUS_LOGIN_PASSWORD} ${DOCKER_REGISTRY}
 
 # Download the package
-buildkite-agent artifact download "${PACKAGE_NAME}.tar.gz" .
-tar -czxf ./${PACKAGE_NAME}.tar.gz --directory ./pkg/app
+#buildkite-agent artifact download "${PACKAGE_NAME}.tar.gz" .
+#tar -czxf ./${PACKAGE_NAME}.tar.gz --directory ./pkg/app
 
-#aws s3 cp s3://mti-ci-artifacts/85/dist/ptg-mobile-1.4.85.tar.gz ptg-mobile-1.4.85.tar.gz
-#tar zxf ./ptg-mobile-1.4.85.tar.gz --directory ./pkg/app
+aws s3 cp s3://mti-ci-artifacts/85/dist/ptg-mobile-1.4.85.tar.gz ptg-mobile-1.4.85.tar.gz
+tar zxf ./ptg-mobile-1.4.85.tar.gz --directory ./pkg/app
 
 cp .ci/web/Dockerfile ./pkg/Dockerfile
 cp .ci/web/nginx.conf ./pkg/nginx.conf
