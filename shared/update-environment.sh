@@ -10,8 +10,8 @@ MINOR_VERSION_KEY="minor_version"
 FULL_VERSION_KEY="full_version"
 VERSION_FILENAME="${PROJECT}.txt"
 # Get the current minor version number or fail
-! buildkite-agent artifact download s3://mti-ci-artifacts/versions/${VERSION_FILENAME} . >/dev/null
-MINOR_VERSION_NUMBER=$(<${VERSION_FILENAME} || "fail")
+! buildkite-agent artifact download s3://mti-ci-artifacts/versions/${VERSION_FILENAME} . >/dev/null 2>/dev/null
+MINOR_VERSION_NUMBER=$(cat ${VERSION_FILENAME} || "fail")
 # If failed then set to 0
 if [[ ${MINOR_VERSION_NUMBER} == "fail" ]]; then
     echo 'Setting initial minor version number to 0'
