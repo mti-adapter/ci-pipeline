@@ -10,7 +10,8 @@ MINOR_VERSION_KEY="minor_version"
 FULL_VERSION_KEY="full_version"
 VERSION_FILENAME="${PROJECT}.txt"
 # Get the current minor version number or fail
-! buildkite-agent artifact download s3://mti-ci-artifacts/versions/${VERSION_FILENAME} .
+#! buildkite-agent artifact download s3://mti-ci-artifacts/versions/${VERSION_FILENAME} .
+! aws s3 cp s3://mti-ci-artifacts/versions/${VERSION_FILENAME} ${VERSION_FILENAME}
 MINOR_VERSION_NUMBER=$(cat ${VERSION_FILENAME} || echo "fail")
 # If failed then set to 0
 if [[ ${MINOR_VERSION_NUMBER} == "fail" ]]; then
