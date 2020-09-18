@@ -23,8 +23,8 @@ mkdir -p pkg/app
 docker login --username=${NEXUS_LOGIN_USER} --password=${NEXUS_LOGIN_PASSWORD} ${DOCKER_REGISTRY}
 
 # Download the package
-buildkite-agent artifact download "dist/${PACKAGE_NAME}.tar.gz" ./${PACKAGE_NAME}.tar.gz
-ls -la .
+buildkite-agent artifact download "dist/${PACKAGE_NAME}.tar.gz" ./
+ls -la dist
 tar zxf ./${PACKAGE_NAME}.tar.gz --directory ./pkg/app
 
 #aws s3 cp s3://mti-ci-artifacts/85/dist/ptg-mobile-1.4.85.tar.gz ptg-mobile-1.4.85.tar.gz
