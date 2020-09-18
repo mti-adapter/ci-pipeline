@@ -5,12 +5,14 @@ echo "+++ Updating environment"
 
 # Provided major version or use 1
 MAJOR_VERSION_NUMBER=${MAJOR_VERSION:-1}
-DOCKER_REGISTRY_HOST=${DOCKER_REGISTRY:-"containers.amphoratech.net/mti"}
+DOCKER_REGISTRY_HOST=${DOCKER_REGISTRY:-"containers.amphoratech.net"}
+DOCKER_REPOSITORY_NAME=${DOCKER_REPOSITORY:-"mti"}
 # Metadata keys
 MINOR_VERSION_KEY="minor_version"
 FULL_VERSION_KEY="full_version"
 PACKAGE_NAME_KEY="package_name"
 DOCKER_REGISTRY_KEY="docker_registry"
+DOCKER_REPOSITORY_KEY="docker_repository"
 VERSION_FILENAME="${PROJECT}.txt"
 # Get the current minor version number or fail
 ! aws s3 cp s3://mti-ci-artifacts/versions/${VERSION_FILENAME} ${VERSION_FILENAME}
@@ -43,3 +45,4 @@ PACKAGE_NAME=${PROJECT}-${VERSION_NUMBER}
 buildkite-agent meta-data set ${PACKAGE_NAME_KEY} ${PACKAGE_NAME}
 # Set docker registry host
 buildkite-agent meta-data set ${DOCKER_REGISTRY_KEY} ${DOCKER_REGISTRY_HOST}
+buildkite-agent meta-data set ${DOCKER_REPOSITORY_KEY} ${DOCKER_REPOSITORY_NAME}
