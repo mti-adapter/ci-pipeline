@@ -5,12 +5,14 @@ echo "+++ Updating environment"
 
 # Provided major version or use 1
 MAJOR_VERSION_NUMBER=${MAJOR_VERSION:-1}
-# Version keys
+DOCKER_REGISTRY_HOST=${DOCKER_REGISTRY:-"containers.amphoratech.net"}
+# Metadata keys
 MINOR_VERSION_KEY="minor_version"
 FULL_VERSION_KEY="full_version"
+PACKAGE_NAME_KEY="package_name"
+DOCKER_REGISTRY_KEY="docker_registry"
 VERSION_FILENAME="${PROJECT}.txt"
 # Get the current minor version number or fail
-#! buildkite-agent artifact download s3://mti-ci-artifacts/versions/${VERSION_FILENAME} .
 ! aws s3 cp s3://mti-ci-artifacts/versions/${VERSION_FILENAME} ${VERSION_FILENAME}
 MINOR_VERSION_NUMBER=$(cat ${VERSION_FILENAME} || echo "fail")
 # If failed then set to 0
@@ -36,3 +38,8 @@ buildkite-agent meta-data set ${MINOR_VERSION_KEY} ${MINOR_VERSION_NUMBER}
 VERSION_NUMBER="${MAJOR_VERSION_NUMBER}.${MINOR_VERSION_NUMBER}.${BUILDKITE_BUILD_NUMBER}"
 # Store full version in metadata
 buildkite-agent meta-data set ${FULL_VERSION_KEY} ${VERSION_NUMBER}
+# Package name
+PACKAGE_NAME=${PROJECT}-${VERSION_NUMBER}
+buildkite-agent meta-data set ${PACKAGE_NAME_KEY} ${PACKAGE_NAME}
+# Set docker registry host
+buildkite-agent meta-data set ${DOCKER_REGISTRY_KEY} ${DOCKER_REGISTRY_HOST}
