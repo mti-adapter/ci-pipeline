@@ -26,7 +26,7 @@ if [[ ${MINOR_VERSION_NUMBER} == "fail" ]]; then
 fi
 
 # Increment version number
-MINOR_VERSION_NUMBER=${MINOR_VERSION_NUMBER}+1
+MINOR_VERSION_NUMBER=$((${MINOR_VERSION_NUMBER}+1))
 VERSION_NUMBER="${MAJOR_VERSION_NUMBER}.${MINOR_VERSION_NUMBER}.${BUILDKITE_BUILD_NUMBER}"
 echo "${MINOR_VERSION_NUMBER}" > version.txt
 echo "+++ Setting minor version number to ${MINOR_VERSION_NUMBER}"
@@ -39,5 +39,5 @@ echo '+++ Running npm build'
 npm run build -- --output-path=${TMP_DIRECTORY}
 echo '+++ Generating artifact'
 cd ${TMP_DIRECTORY}
-tar -zcvf ${BASE_DIRECTORY}/dist/${PACKAGE_FILENAME}-${VERSION_NUMBER}.tar.gz .
+tar -zcf ${BASE_DIRECTORY}/dist/${PACKAGE_FILENAME}-${VERSION_NUMBER}.tar.gz .
 cd ${BASE_DIRECTORY}
