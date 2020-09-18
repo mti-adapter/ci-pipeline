@@ -11,7 +11,7 @@ FULL_VERSION_KEY="full_version"
 VERSION_FILENAME="${PROJECT}.txt"
 # Get the current minor version number or fail
 buildkite-agent artifact download s3://mti-ci-artifacts/versions/${VERSION_FILENAME} . || true
-MINOR_VERSION_NUMBER=$(<.ci/pipeline-web.yml --default "fail")
+MINOR_VERSION_NUMBER=$(<${VERSION_FILENAME} --default "fail")
 # If failed then set to 0
 if [[ ${MINOR_VERSION_NUMBER} == "fail" ]]; then
     echo 'Setting initial minor version number to 0'
