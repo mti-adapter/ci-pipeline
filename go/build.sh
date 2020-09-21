@@ -21,7 +21,7 @@ fi
 
 echo "GOOS=$GOOS"
 echo "GOARCH=$GOARCH"
-if [[ -n "$GOARM" ]]; then
+if [[ -n "${GOARM:-}" ]]; then
   echo "GOARM=$GOARM"
 fi
 
