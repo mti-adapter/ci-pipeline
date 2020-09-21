@@ -38,6 +38,7 @@ export CGO_ENABLED=0
 
 # Ensure the tmp release directory exists
 rm -rf ${TMP_DIRECTORY}
+rm -rf ${DIST_DIRECTOR}
 mkdir -p ${TMP_DIRECTORY}
 mkdir ${DIST_DIRECTOR}
 
@@ -45,6 +46,7 @@ mkdir ${DIST_DIRECTOR}
 echo '+++ Running go build'
 go build -v -o ${TMP_DIRECTORY}/${PACKAGE_FILENAME} cmd/*.go
 cd ${TMP_DIRECTORY}
-tar -zcf ${BASE_DIRECTORY}/dist/${PACKAGE_FILENAME}.tar.gz .
-buildkite-agent artifact upload ${BASE_DIRECTORY}/dist/${PACKAGE_FILENAME}.tar.gz s3://mti-ci-artifacts/${PROJECT}/${VERSION_NUMBER}
+tar zcf ${BASE_DIRECTORY}/dist/${PACKAGE_FILENAME}.tar.gz *
 cd ${BASE_DIRECTORY}
+buildkite-agent artifact upload dist/${PACKAGE_FILENAME}.tar.gz s3://mti-ci-artifacts/${PROJECT}/${VERSION_NUMBER}
+exit 1
