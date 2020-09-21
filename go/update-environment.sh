@@ -41,8 +41,10 @@ VERSION_NUMBER="${MAJOR_VERSION_NUMBER}.${MINOR_VERSION_NUMBER}.${BUILDKITE_BUIL
 # Store full version in metadata
 buildkite-agent meta-data set ${FULL_VERSION_KEY} ${VERSION_NUMBER}
 # Package name
-PACKAGE_NAME=${PROJECT}-${VERSION_NUMBER}
+PACKAGE_NAME=${PROJECT}
 buildkite-agent meta-data set ${PACKAGE_NAME_KEY} ${PACKAGE_NAME}
 # Set docker registry host
 buildkite-agent meta-data set ${DOCKER_REGISTRY_KEY} ${DOCKER_REGISTRY_HOST}
 buildkite-agent meta-data set ${DOCKER_REPOSITORY_KEY} ${DOCKER_REPOSITORY_NAME}
+# Artifact upload destination
+export BUILDKITE_ARTIFACT_UPLOAD_DESTINATION=s3://mti-ci-artifacts/${VERSION_NUMBER}

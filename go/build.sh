@@ -33,6 +33,9 @@ if [[ "$GOOS" == "windows" ]]; then
   PACKAGE_FILENAME="$PACKAGE_FILENAME.exe"
 fi
 
+# Artifact upload destination
+export BUILDKITE_ARTIFACT_UPLOAD_DESTINATION=s3://mti-ci-artifacts/${VERSION_NUMBER}
+
 # Disable CGO completely
 export CGO_ENABLED=0
 

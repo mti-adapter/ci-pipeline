@@ -10,6 +10,6 @@ merge_steps_yaml() {
 }
 
 # Set environments, process version upgrades etc.
-./.ci/shared/update-environment.sh
+./.ci/web/update-environment.sh
 
 merge_steps_yaml | buildkite-agent pipeline upload
