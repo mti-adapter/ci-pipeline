@@ -26,7 +26,7 @@ mkdir -p pkg/app
 docker login --username=${NEXUS_LOGIN_USER} --password=${NEXUS_LOGIN_PASSWORD} ${DOCKER_REGISTRY}
 
 # Download the package
-buildkite-agent artifact download "${PROJECT}/${FULL_VERSION}/${PACKAGE_NAME}.tar.gz" .
+buildkite-agent artifact download "s3://mti-ci-artifacts/${PROJECT}/${FULL_VERSION}/${PACKAGE_NAME}.tar.gz" .
 tar zxf ./${PACKAGE_NAME}.tar.gz --directory ./pkg
 mv ./pkg/${PACKAGE_NAME} ./pkg/app
 
