@@ -49,4 +49,3 @@ tar czf ${BASE_DIRECTORY}/dist/${PACKAGE_FILENAME}.tar.gz --directory=${TMP_DIRE
 cd ${BASE_DIRECTORY}/dist
 buildkite-agent artifact upload ${PACKAGE_FILENAME}.tar.gz s3://mti-ci-artifacts/${PROJECT}/${VERSION_NUMBER}
 cd ${BASE_DIRECTORY}
-exit 1
