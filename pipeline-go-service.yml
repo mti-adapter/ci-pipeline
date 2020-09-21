@@ -29,7 +29,7 @@
   - wait
 
   - name: ":docker: Build & Publish Docker Image"
-    command: ".ci/go/build-docker-image.sh"
+    command: ".ci/go/build-docker-image.sh linux amd64"
     env:
       - PROJECT
       - BUILDKITE_JOB_ID

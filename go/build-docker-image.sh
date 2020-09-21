@@ -12,6 +12,9 @@ DOCKER_REPOSITORY_NAME=$(buildkite-agent meta-data get ${DOCKER_REPOSITORY_KEY})
 IMAGE_TAG="${DOCKER_REGISTRY}/${DOCKER_REPOSITORY_NAME}/${PROJECT}:${FULL_VERSION}"
 # Package name
 PACKAGE_NAME=${PROJECT}-${GOOS}-${GOARCH}
+# Binary type
+export GOOS=${1}
+export GOARCH=${2}
 
 echo "+++ Building docker image -> ${IMAGE_TAG}"
 
