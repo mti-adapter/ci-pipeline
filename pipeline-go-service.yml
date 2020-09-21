@@ -1,22 +1,21 @@
-steps:
-  - name: ":junit: Run tests"
-    command: ".ci/go/tests.sh"
-    artifact_paths: "dist/*"
-    plugins:
-      - docker-compose#v3.5.0:
-          config: .ci/pipeline-go-service-docker-compose.yml
-          run: agent
-          env:
-            - PROJECT
-            - BUILDKITE_JOB_ID
-            - BUILDKITE_BUILD_ID
-            - BUILDKITE_BUILD_NUMBER
-
-  - wait
+#steps:
+#  - name: ":junit: Run tests"
+#    command: ".ci/go/tests.sh"
+#    artifact_paths: "dist/*"
+#    plugins:
+#      - docker-compose#v3.5.0:
+#          config: .ci/pipeline-go-service-docker-compose.yml
+#          run: agent
+#          env:
+#            - PROJECT
+#            - BUILDKITE_JOB_ID
+#            - BUILDKITE_BUILD_ID
+#            - BUILDKITE_BUILD_NUMBER
+#
+#  - wait
 
   - name: ":linux: amd64"
     command: ".ci/go/build.sh linux amd64"
-    artifact_paths: "dist/*"
     plugins:
       docker-compose#v3.0.0:
         config: .ci/pipeline-go-service-docker-compose.yml
@@ -28,11 +27,11 @@ steps:
           - BUILDKITE_BUILD_NUMBER
 
   - wait
-
-  - name: ":docker: Build & Publish Docker Image"
-    command: ".ci/go/build-docker-image.sh"
-    env:
-      - PROJECT
-      - BUILDKITE_JOB_ID
-      - BUILDKITE_BUILD_ID
-      - BUILDKITE_BUILD_NUMBER
+#
+#  - name: ":docker: Build & Publish Docker Image"
+#    command: ".ci/go/build-docker-image.sh"
+#    env:
+#      - PROJECT
+#      - BUILDKITE_JOB_ID
+#      - BUILDKITE_BUILD_ID
+#      - BUILDKITE_BUILD_NUMBER
