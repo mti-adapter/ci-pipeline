@@ -43,7 +43,7 @@ mkdir ${DIST_DIRECTOR}
 
 # Build & Package
 echo '+++ Running go build'
-go build -v -o ${TMP_DIRECTORY}/${PACKAGE_FILENAME} *.go
+go build -v -o ${TMP_DIRECTORY}/${PACKAGE_FILENAME} cmd/*.go
 cd ${TMP_DIRECTORY}
 tar -zcf ${BASE_DIRECTORY}/dist/${PACKAGE_FILENAME}.tar.gz .
 cd ${BASE_DIRECTORY}
