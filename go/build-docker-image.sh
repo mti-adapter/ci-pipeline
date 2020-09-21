@@ -28,8 +28,11 @@ docker login --username=${NEXUS_LOGIN_USER} --password=${NEXUS_LOGIN_PASSWORD} $
 # Download the package
 aws s3 cp s3://mti-ci-artifacts/${PROJECT}/${FULL_VERSION}/${PACKAGE_NAME}.tar.gz ${PACKAGE_NAME}.tar.gz
 tar zxf ./${PACKAGE_NAME}.tar.gz --directory ./pkg
+ls -la ./pkg
 mv ./pkg/${PACKAGE_NAME} ./pkg/app
-chmod +x "./pkg/app"
+ls -la ./pkg
+chmod +x ./pkg/app
+ls -la ./pkg
 
 cp .ci/go/Dockerfile ./pkg/Dockerfile
 docker build --tag ${IMAGE_TAG} ./pkg
