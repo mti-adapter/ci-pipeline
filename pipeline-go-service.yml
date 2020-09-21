@@ -27,11 +27,11 @@
           - BUILDKITE_BUILD_NUMBER
 
   - wait
-#
-#  - name: ":docker: Build & Publish Docker Image"
-#    command: ".ci/go/build-docker-image.sh"
-#    env:
-#      - PROJECT
-#      - BUILDKITE_JOB_ID
-#      - BUILDKITE_BUILD_ID
-#      - BUILDKITE_BUILD_NUMBER
+
+  - name: ":docker: Build & Publish Docker Image"
+    command: ".ci/go/build-docker-image.sh"
+    env:
+      - PROJECT
+      - BUILDKITE_JOB_ID
+      - BUILDKITE_BUILD_ID
+      - BUILDKITE_BUILD_NUMBER
