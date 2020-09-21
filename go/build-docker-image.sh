@@ -24,8 +24,7 @@ docker login --username=${NEXUS_LOGIN_USER} --password=${NEXUS_LOGIN_PASSWORD} $
 
 # Download the package
 buildkite-agent artifact download "${PROJECT}/${FULL_VERSION}/${PACKAGE_NAME}.tar.gz" .
-mv dist/${PACKAGE_NAME}.tar.gz ./${PACKAGE_NAME}.tar.gz
-tar zxf ./${PACKAGE_NAME}.tar.gz --directory ./pkg/app
+tar zxf ./${PACKAGE_NAME}.tar.gz --directory ./pkg
 mv ./pkg/${PACKAGE_NAME} ./pkg/app
 
 cp .ci/go/Dockerfile ./pkg/Dockerfile
