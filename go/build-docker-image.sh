@@ -20,7 +20,7 @@ echo "+++ Building docker image -> ${IMAGE_TAG}"
 
 # Clean existing pkg
 rm -rf pkg
-mkdir -p pkg/app
+mkdir -p pkg
 
 # Login to private registry
 docker login --username=${NEXUS_LOGIN_USER} --password=${NEXUS_LOGIN_PASSWORD} ${DOCKER_REGISTRY}
