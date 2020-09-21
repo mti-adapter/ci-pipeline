@@ -45,6 +45,6 @@ mkdir ${DIST_DIRECTOR}
 echo '+++ Running go build'
 go build -v -o ${TMP_DIRECTORY}/${PACKAGE_FILENAME} cmd/*.go
 cd ${TMP_DIRECTORY}
-tar -zcf ${BASE_DIRECTORY}/dist/${PACKAGE_FILENAME}.tar.gz .
+tar -zcf ${PACKAGE_FILENAME}.tar.gz .
 buildkite-agent artifact upload ${PACKAGE_FILENAME}.tar.gz s3://mti-ci-artifacts/${PROJECT}/${VERSION_NUMBER}
 cd ${BASE_DIRECTORY}
