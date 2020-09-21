@@ -14,8 +14,9 @@ VERSION_NUMBER=$(buildkite-agent meta-data get "full_version")
 
 # Ensure the tmp release directory exists
 rm -rf ${TMP_DIRECTORY}
+rm -rf ${DIST_DIRECTOR}
 mkdir -p ${TMP_DIRECTORY}
-mkdir ${DIST_DIRECTOR}
+mkdir -p ${DIST_DIRECTOR}
 
 export BUILDKITE_ARTIFACT_UPLOAD_DESTINATION=s3://mti-ci-artifacts/${PROJECT}/${VERSION_NUMBER}
 
@@ -25,6 +26,7 @@ npm install
 npm install -g @angular/cli@~${NG_CLI_VERSION:-9.1.5}
 echo '+++ Running npm build'
 npm run build -- --output-path=${TMP_DIRECTORY}
-cd ${TMP_DIRECTORY}
-tar -zcf ${BASE_DIRECTORY}/dist/${PACKAGE_FILENAME}-${VERSION_NUMBER}.tar.gz .
+tar czf ${DIST_DIRECTOR}/${PACKAGE_FILENAME}.tar.gz --directory=${TMP_DIRECTORY} .
+cd ${DIST_DIRECTOR}
+buildkite-agent artifact upload ${PACKAGE_FILENAME}.tar.gz s3://mti-ci-artifacts/${PROJECT}/${VERSION_NUMBER}
 cd ${BASE_DIRECTORY}

@@ -7,11 +7,12 @@ FULL_VERSION_KEY="full_version"
 DOCKER_REGISTRY_KEY="docker_registry"
 DOCKER_REPOSITORY_KEY="docker_repository"
 # Metadata
-PACKAGE_NAME=$(buildkite-agent meta-data get ${PACKAGE_NAME_KEY})
 FULL_VERSION=$(buildkite-agent meta-data get ${FULL_VERSION_KEY})
 DOCKER_REGISTRY=$(buildkite-agent meta-data get ${DOCKER_REGISTRY_KEY})
 DOCKER_REPOSITORY_NAME=$(buildkite-agent meta-data get ${DOCKER_REPOSITORY_KEY})
 IMAGE_TAG="${DOCKER_REGISTRY}/${DOCKER_REPOSITORY_NAME}/${PROJECT}:${FULL_VERSION}"
+
+PACKAGE_NAME=${PROJECT}
 
 export BUILDKITE_ARTIFACT_UPLOAD_DESTINATION=s3://mti-ci-artifacts/${PROJECT}/${FULL_VERSION}
 
@@ -25,14 +26,8 @@ mkdir -p pkg/app
 docker login --username=${NEXUS_LOGIN_USER} --password=${NEXUS_LOGIN_PASSWORD} ${DOCKER_REGISTRY}
 
 # Download the package
-buildkite-agent artifact download "dist/${PACKAGE_NAME}.tar.gz" .
-mv dist/${PACKAGE_NAME}.tar.gz ./${PACKAGE_NAME}.tar.gz
-tar zxf ./${PACKAGE_NAME}.tar.gz --directory ./pkg/app
-
-# Only used for testing
-#aws s3 cp s3://mti-ci-artifacts/85/dist/ptg-mobile-1.4.85.tar.gz ptg-mobile-1.4.85.tar.gz
-#tar zxf ./ptg-mobile-1.4.85.tar.gz --directory ./pkg/app
-
+aws s3 cp s3://mti-ci-artifacts/${PROJECT}/${FULL_VERSION}/${PACKAGE_NAME}.tar.gz ${PACKAGE_NAME}.tar.gz
+tar xvf ./${PACKAGE_NAME}.tar.gz -C ./pkg
 cp .ci/web/Dockerfile ./pkg/Dockerfile
 cp .ci/web/nginx.conf ./pkg/nginx.conf
 docker build --tag ${IMAGE_TAG} ./pkg
