@@ -1,0 +1,15 @@
+version: '3.4'
+
+services:
+  agent:
+    image: golang:1.14.9
+    working_dir: /app
+    volumes:
+      - ../:/app
+      - ${BUILDKITE_AGENT_BINARY_PATH:-/usr/bin/buildkite-agent}:/usr/bin/buildkite-agent
+    environment:
+      - PROJECT
+      - BUILDKITE_JOB_ID
+      - BUILDKITE_BUILD_ID
+      - BUILDKITE_BUILD_NUMBER
+      - BUILDKITE_AGENT_ACCESS_TOKEN
