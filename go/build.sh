@@ -34,7 +34,7 @@ if [[ "$GOOS" == "windows" ]]; then
 fi
 
 # Artifact upload destination
-export BUILDKITE_ARTIFACT_UPLOAD_DESTINATION=s3://mti-ci-artifacts/${VERSION_NUMBER}
+export BUILDKITE_ARTIFACT_UPLOAD_DESTINATION=s3://mti-ci-artifacts/${PROJECT}/${VERSION_NUMBER}
 
 # Disable CGO completely
 export CGO_ENABLED=0

@@ -47,4 +47,4 @@ buildkite-agent meta-data set ${PACKAGE_NAME_KEY} ${PACKAGE_NAME}
 buildkite-agent meta-data set ${DOCKER_REGISTRY_KEY} ${DOCKER_REGISTRY_HOST}
 buildkite-agent meta-data set ${DOCKER_REPOSITORY_KEY} ${DOCKER_REPOSITORY_NAME}
 # Artifact upload destination
-export BUILDKITE_ARTIFACT_UPLOAD_DESTINATION=s3://mti-ci-artifacts/${VERSION_NUMBER}
+export BUILDKITE_ARTIFACT_UPLOAD_DESTINATION=s3://mti-ci-artifacts/${PROJECT}/${VERSION_NUMBER}
