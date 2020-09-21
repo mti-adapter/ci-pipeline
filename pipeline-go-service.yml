@@ -31,7 +31,6 @@ steps:
 
   - name: ":docker: Build & Publish Docker Image"
     command: ".ci/go/build-docker-image.sh"
-    run: agent
     env:
       - PROJECT
       - BUILDKITE_JOB_ID
