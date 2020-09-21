@@ -18,8 +18,6 @@ rm -rf ${DIST_DIRECTOR}
 mkdir -p ${TMP_DIRECTORY}
 mkdir -p ${DIST_DIRECTOR}
 
-export BUILDKITE_ARTIFACT_UPLOAD_DESTINATION=s3://mti-ci-artifacts/${PROJECT}/${VERSION_NUMBER}
-
 # Build & Package
 echo '+++ Running npm install'
 npm install
