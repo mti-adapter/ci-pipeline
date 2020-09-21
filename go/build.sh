@@ -26,15 +26,12 @@ if [[ -n "${GOARM:-}" ]]; then
 fi
 
 # Package name
-PACKAGE_FILENAME=${PROJECT}-${GOOS}-${GOARCH}-${VERSION_NUMBER}
+PACKAGE_FILENAME=${PROJECT}-${GOOS}-${GOARCH}
 
 # Add .exe for Windows builds
 if [[ "$GOOS" == "windows" ]]; then
   PACKAGE_FILENAME="$PACKAGE_FILENAME.exe"
 fi
-
-# Artifact upload destination
-export BUILDKITE_ARTIFACT_UPLOAD_DESTINATION=s3://mti-ci-artifacts/${PROJECT}/${VERSION_NUMBER}
 
 # Disable CGO completely
 export CGO_ENABLED=0
@@ -49,5 +46,5 @@ echo '+++ Running go build'
 go build -v -o ${TMP_DIRECTORY}/${PACKAGE_FILENAME} cmd/*.go
 cd ${TMP_DIRECTORY}
 tar -zcf ${BASE_DIRECTORY}/dist/${PACKAGE_FILENAME}.tar.gz .
-buildkite-agent artifact upload ${BASE_DIRECTORY}/dist/${PACKAGE_FILENAME}.tar.gz s3://mti-ci-artifacts/${PROJECT}/${VERSION_NUMBER}
+buildkite-agent artifact upload ${PACKAGE_FILENAME}.tar.gz s3://mti-ci-artifacts/${PROJECT}/${VERSION_NUMBER}
 cd ${BASE_DIRECTORY}

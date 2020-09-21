@@ -11,10 +11,7 @@ DOCKER_REGISTRY=$(buildkite-agent meta-data get ${DOCKER_REGISTRY_KEY})
 DOCKER_REPOSITORY_NAME=$(buildkite-agent meta-data get ${DOCKER_REPOSITORY_KEY})
 IMAGE_TAG="${DOCKER_REGISTRY}/${DOCKER_REPOSITORY_NAME}/${PROJECT}:${FULL_VERSION}"
 # Package name
-PACKAGE_NAME=${PROJECT}-${GOOS}-${GOARCH}-${VERSION_NUMBER}
-
-# Artifact upload destination
-export BUILDKITE_ARTIFACT_UPLOAD_DESTINATION=s3://mti-ci-artifacts/${PROJECT}/${FULL_VERSION}
+PACKAGE_NAME=${PROJECT}-${GOOS}-${GOARCH}
 
 echo "+++ Building docker image -> ${IMAGE_TAG}"
 
@@ -26,7 +23,7 @@ mkdir -p pkg/app
 docker login --username=${NEXUS_LOGIN_USER} --password=${NEXUS_LOGIN_PASSWORD} ${DOCKER_REGISTRY}
 
 # Download the package
-buildkite-agent artifact download "dist/${PACKAGE_NAME}.tar.gz" .
+buildkite-agent artifact download "${PROJECT}/${FULL_VERSION}/${PACKAGE_NAME}.tar.gz" .
 mv dist/${PACKAGE_NAME}.tar.gz ./${PACKAGE_NAME}.tar.gz
 tar zxf ./${PACKAGE_NAME}.tar.gz --directory ./pkg/app
 mv ./pkg/${PACKAGE_NAME} ./pkg/app
