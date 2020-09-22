@@ -19,5 +19,5 @@ echo "+++ Building docker image -> ${IMAGE_TAG}"
 docker login --username=${NEXUS_LOGIN_USER} --password=${NEXUS_LOGIN_PASSWORD} ${DOCKER_REGISTRY}
 
 cp .ci/python/Dockerfile ./Dockerfile
-docker build --tag ${IMAGE_TAG} ./pkg
+docker build --tag ${IMAGE_TAG} .
 docker push ${IMAGE_TAG}
