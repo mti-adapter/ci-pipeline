@@ -33,9 +33,6 @@ if [[ "$GOOS" == "windows" ]]; then
   PACKAGE_FILENAME="$PACKAGE_FILENAME.exe"
 fi
 
-# Disable CGO completely
-export CGO_ENABLED=0
-
 # Ensure the tmp release directory exists
 rm -rf ${TMP_DIRECTORY}
 rm -rf ${DIST_DIRECTOR}
