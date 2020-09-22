@@ -44,6 +44,7 @@ mkdir ${DIST_DIRECTOR}
 
 # Build & Package
 echo '+++ Running go build'
+go mod vendor
 go build -v -o ${TMP_DIRECTORY}/${PACKAGE_FILENAME} cmd/*.go
 chmod +x ${TMP_DIRECTORY}/${PACKAGE_FILENAME}
 tar czf ${BASE_DIRECTORY}/dist/${PACKAGE_FILENAME}.tar.gz --directory=${TMP_DIRECTORY} .
