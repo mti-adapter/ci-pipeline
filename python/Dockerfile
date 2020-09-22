@@ -7,8 +7,12 @@ WORKDIR /code
 # copy the dependencies file to the working directory
 COPY requirements.txt .
 
+RUN apt-get update
+RUN apt-get install gcc
+
 # install dependencies
 RUN pip install -r requirements.txt
+
 
 # copy the content of the local src directory to the working directory
 COPY ./* .
