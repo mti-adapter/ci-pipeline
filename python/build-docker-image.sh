@@ -18,6 +18,10 @@ echo "+++ Building docker image -> ${IMAGE_TAG}"
 # Login to private registry
 docker login --username=${NEXUS_LOGIN_USER} --password=${NEXUS_LOGIN_PASSWORD} ${DOCKER_REGISTRY}
 
-cp .ci/python/Dockerfile ./Dockerfile
+if test -f "Dockerfile"; then
+        echo "Dockerfile exists."
+    else
+        cp .ci/python/Dockerfile ./Dockerfile
+fi
 docker build --tag ${IMAGE_TAG} .
 docker push ${IMAGE_TAG}
