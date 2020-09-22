@@ -18,6 +18,6 @@ echo "+++ Building docker image -> ${IMAGE_TAG}"
 # Login to private registry
 docker login --username=${NEXUS_LOGIN_USER} --password=${NEXUS_LOGIN_PASSWORD} ${DOCKER_REGISTRY}
 
-cp .ci/go/Dockerfile ./Dockerfile
+cp .ci/python/Dockerfile ./Dockerfile
 docker build --tag ${IMAGE_TAG} ./pkg
 docker push ${IMAGE_TAG}
