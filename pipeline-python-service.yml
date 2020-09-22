@@ -1,0 +1,7 @@
+  - name: ":docker: Build & Publish Docker Image"
+    command: ".ci/python/build-docker-image.sh"
+    env:
+      - PROJECT
+      - BUILDKITE_JOB_ID
+      - BUILDKITE_BUILD_ID
+      - BUILDKITE_BUILD_NUMBER
