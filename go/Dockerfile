@@ -1,3 +1,3 @@
-FROM golang:1.14.9
+FROM scratch
 COPY ./app /app
 ENTRYPOINT ["/app"]
