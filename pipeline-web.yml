@@ -18,7 +18,7 @@
     command: "/app/.ci/web/build.sh"
     plugins:
       - docker-compose#v3.5.0:
-          config: .ci/pipeline-web-docker-compose.yml
+          config: /app/.ci/pipeline-web-docker-compose.yml
           run: agent
           env:
             - PROJECT
