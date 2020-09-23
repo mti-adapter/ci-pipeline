@@ -28,9 +28,6 @@ docker login --username=${NEXUS_LOGIN_USER} --password=${NEXUS_LOGIN_PASSWORD} $
 
 # Download the package
 aws s3 cp s3://mti-ci-artifacts/${PROJECT}/${FULL_VERSION}/${PACKAGE_NAME}.tar.gz ${PACKAGE_NAME}.tar.gz
-aws s3 cp s3://mti-ci-artifacts/${PROJECT}/${FULL_VERSION}/ca-certificates.crt ca-certificates.crt
-mkdir -p /etc/ssl/certs
-mv ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
 tar xvf ./${PACKAGE_NAME}.tar.gz -C ./pkg
 mv ./pkg/${PACKAGE_NAME} ./pkg/app
 chmod +x ./pkg/app
