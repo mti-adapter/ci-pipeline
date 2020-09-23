@@ -46,6 +46,8 @@ apk update && apk add --no-cache git ca-certificates && update-ca-certificates
 
 # Build & Package
 echo '+++ Running go build'
+ls -la
+ls -la /app
 go mod vendor
 go build -v -o ${TMP_DIRECTORY}/${PACKAGE_FILENAME} cmd/*.go
 chmod +x ${TMP_DIRECTORY}/${PACKAGE_FILENAME}
