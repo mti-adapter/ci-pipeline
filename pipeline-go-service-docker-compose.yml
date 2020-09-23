@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: pipeline-go-service-dockerfile
-    working_dir: /app
+    working_dir: /app/
     volumes:
       - ../:/app
       - ${BUILDKITE_AGENT_BINARY_PATH:-/usr/bin/buildkite-agent}:/usr/bin/buildkite-agent

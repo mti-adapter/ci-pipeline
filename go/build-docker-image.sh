@@ -32,6 +32,6 @@ tar xvf ./${PACKAGE_NAME}.tar.gz -C ./pkg
 mv ./pkg/${PACKAGE_NAME} ./pkg/app
 chmod +x ./pkg/app
 
-cp ci/go/Dockerfile ./pkg/Dockerfile
+cp .ci/go/Dockerfile ./pkg/Dockerfile
 docker build --tag ${IMAGE_TAG} ./pkg
 docker push ${IMAGE_TAG}

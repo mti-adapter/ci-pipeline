@@ -1,2 +1,2 @@
 FROM golang:1.14.9-alpine3.12
-WORKDIR /app
+WORKDIR /app/
