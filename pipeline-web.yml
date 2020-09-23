@@ -15,10 +15,10 @@
 #  - wait
 
   - name: ":angular: Build & Package Artifacts"
-    command: "/app/.ci/web/build.sh"
+    command: ".ci/web/build.sh"
     plugins:
       - docker-compose#v3.5.0:
-          config: /app/.ci/pipeline-web-docker-compose.yml
+          config: .ci/pipeline-web-docker-compose.yml
           run: agent
           env:
             - PROJECT
@@ -29,7 +29,7 @@
   - wait
 
   - name: ":docker: Build & Publish Docker Image"
-    command: "/app/.ci/web/build-docker-image.sh"
+    command: ".ci/web/build-docker-image.sh"
     env:
       - PROJECT
       - BUILDKITE_JOB_ID

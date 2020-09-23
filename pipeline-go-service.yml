@@ -15,10 +15,10 @@
 #  - wait
 
   - name: ":linux: amd64"
-    command: ".ci/go/build.sh linux amd64"
+    command: "/app/.ci/go/build.sh linux amd64"
     plugins:
       docker-compose#v3.0.0:
-        config: .ci/pipeline-go-service-docker-compose.yml
+        config: /app/.ci/pipeline-go-service-docker-compose.yml
         run: agent
         env:
           - PROJECT
@@ -29,7 +29,7 @@
   - wait
 
   - name: ":docker: Build & Publish Docker Image"
-    command: ".ci/go/build-docker-image.sh linux amd64"
+    command: "/app/.ci/go/build-docker-image.sh linux amd64"
     env:
       - PROJECT
       - BUILDKITE_JOB_ID
