@@ -5,7 +5,7 @@ services:
     image: golang:1.14.9-alpine3.12
     working_dir: /app/
     volumes:
-      - ../:/app
+      - ../:/app/
       - ${BUILDKITE_AGENT_BINARY_PATH:-/usr/bin/buildkite-agent}:/usr/bin/buildkite-agent
     environment:
       - PROJECT
