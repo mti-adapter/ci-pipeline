@@ -2,10 +2,8 @@ version: '3.4'
 
 services:
   agent:
-    build:
-      context: .
-      dockerfile: pipeline-go-service-dockerfile
-    working_dir: /app/
+    image: golang:1.14.9-alpine3.12
+    working_dir: /app
     volumes:
       - ../:/app
       - ${BUILDKITE_AGENT_BINARY_PATH:-/usr/bin/buildkite-agent}:/usr/bin/buildkite-agent
