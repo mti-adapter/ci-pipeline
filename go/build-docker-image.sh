@@ -25,7 +25,6 @@ mkdir -p pkg
 # Login to private registry
 docker login --username=${NEXUS_LOGIN_USER} --password=${NEXUS_LOGIN_PASSWORD} ${DOCKER_REGISTRY}
 
-apk update && apk add --no-cache git ca-certificates && update-ca-certificates
 
 # Download the package
 aws s3 cp s3://mti-ci-artifacts/${PROJECT}/${FULL_VERSION}/${PACKAGE_NAME}.tar.gz ${PACKAGE_NAME}.tar.gz

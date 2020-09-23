@@ -42,6 +42,8 @@ rm -rf ${DIST_DIRECTOR}
 mkdir -p ${TMP_DIRECTORY}
 mkdir ${DIST_DIRECTOR}
 
+apk update && apk add --no-cache git ca-certificates && update-ca-certificates
+
 # Build & Package
 echo '+++ Running go build'
 go mod vendor
