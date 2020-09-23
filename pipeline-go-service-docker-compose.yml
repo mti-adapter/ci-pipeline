@@ -2,7 +2,8 @@ version: '3.4'
 
 services:
   agent:
-    image: golang:1.14.9-alpine3.12
+    build:
+      dockerfile: pipeline-go-service-dockerfile
     working_dir: /app
     volumes:
       - ../:/app
