@@ -42,14 +42,14 @@ rm -rf ${DIST_DIRECTOR}
 mkdir -p ${TMP_DIRECTORY}
 mkdir ${DIST_DIRECTOR}
 
-apk update && apk add --no-cache git ca-certificates && update-ca-certificates
-
 # Build & Package
 echo '+++ Running go build'
-go mod vendor
-go build -v -o ${TMP_DIRECTORY}/${PACKAGE_FILENAME} cmd/*.go
+go mod download
+go mod verify
+go build -ldflags="-w -s" -v -o ${TMP_DIRECTORY}/${PACKAGE_FILENAME} cmd/*.go
 chmod +x ${TMP_DIRECTORY}/${PACKAGE_FILENAME}
 tar czf ${BASE_DIRECTORY}/dist/${PACKAGE_FILENAME}.tar.gz --directory=${TMP_DIRECTORY} .
 cd ${BASE_DIRECTORY}/dist
+buildkite-agent artifact upload /etc/ssl/certs/ca-certificates.crt s3://mti-ci-artifacts/${PROJECT}/${VERSION_NUMBER}
 buildkite-agent artifact upload ${PACKAGE_FILENAME}.tar.gz s3://mti-ci-artifacts/${PROJECT}/${VERSION_NUMBER}
 cd ${BASE_DIRECTORY}
