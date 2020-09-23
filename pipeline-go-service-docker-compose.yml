@@ -3,7 +3,7 @@ version: '3.4'
 services:
   agent:
     image: golang:1.14.9-alpine3.12
-    working_dir: /app
+    working_dir: /app/
     volumes:
       - ../:/app
       - ${BUILDKITE_AGENT_BINARY_PATH:-/usr/bin/buildkite-agent}:/usr/bin/buildkite-agent
