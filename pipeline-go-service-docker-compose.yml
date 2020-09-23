@@ -3,6 +3,7 @@ version: '3.4'
 services:
   agent:
     build:
+      context: .
       dockerfile: pipeline-go-service-dockerfile
     working_dir: /app
     volumes:
