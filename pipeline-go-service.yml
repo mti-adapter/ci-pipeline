@@ -15,10 +15,10 @@
 #  - wait
 
   - name: ":linux: amd64"
-    command: "../.ci/go/build.sh linux amd64"
+    command: "ls -la && ../.ci/go/build.sh linux amd64"
     plugins:
       docker-compose#v3.0.0:
-        config: .ci/pipeline-go-service-docker-compose.yml
+        config: ../.ci/pipeline-go-service-docker-compose.yml
         run: agent
         env:
           - PROJECT
