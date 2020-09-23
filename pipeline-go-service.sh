@@ -5,7 +5,7 @@ echo '+++ Merging go service pipeline steps'
 
 
 merge_steps_yaml() {
-    value=$(<.ci/pipeline-go-service.yml)
+    value=$(<ci/pipeline-go-service.yml)
     echo "$value"
 }
 
