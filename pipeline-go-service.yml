@@ -15,7 +15,7 @@
 #  - wait
 
   - name: ":linux: amd64"
-    command: "ls -la && ../.ci/go/build.sh linux amd64"
+    command: "ls -la"
     plugins:
       docker-compose#v3.0.0:
         config: ../.ci/pipeline-go-service-docker-compose.yml
