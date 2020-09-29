@@ -17,13 +17,6 @@
   - name: ":angular: Build & Package Artifacts"
     command: ".ci/web/build.sh"
     plugins:
-      - "cache:v0.0.1":
-          paths:
-            - path: node_modules
-              manifest: package-lock.json
-              scopes:
-                - manifest
-                - org
       - docker-compose#v3.5.0:
           config: .ci/pipeline-web-docker-compose.yml
           env:
