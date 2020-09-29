@@ -14,21 +14,16 @@
 #
 #  - wait
 
-  - name: restore-cache
-    image: drillster/drone-volume-cache
-    volumes:
-      - name: cache
-        path: /cache
-    settings:
-      restore: true
-        mount:
-          - ./node_modules
-
-  - wait
-
   - name: ":angular: Build & Package Artifacts"
     command: ".ci/web/build.sh"
     plugins:
+      - "cache:v0.0.1":
+          paths:
+            - path: node_modules
+              manifest: package-lock.json
+              scopes:
+                - manifest
+                - org
       - docker-compose#v3.5.0:
           config: .ci/pipeline-web-docker-compose.yml
           env:
@@ -36,18 +31,6 @@
             - BUILDKITE_JOB_ID
             - BUILDKITE_BUILD_ID
             - BUILDKITE_BUILD_NUMBER
-
-  - wait
-
-  - name: rebuild-cache
-    image: drillster/drone-volume-cache
-    volumes:
-      - name: cache
-        path: /cache
-    settings:
-      rebuild: true
-      mount:
-        - ./node_modules
 
   - name: ":docker: Build & Publish Docker Image"
     command: ".ci/web/build-docker-image.sh"
