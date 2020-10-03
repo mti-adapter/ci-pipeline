@@ -1,0 +1,18 @@
+version: '3.4'
+
+services:
+  agent:
+    image: python:3.6
+    working_dir: /code
+    volumes:
+      - ../:/code
+      - ${BUILDKITE_AGENT_BINARY_PATH:-/usr/bin/buildkite-agent}:/usr/bin/buildkite-agent
+    environment:
+      - PROJECT
+      - BUILDKITE_JOB_ID
+      - BUILDKITE_BUILD_ID
+      - BUILDKITE_BUILD_NUMBER
+      - BUILD_OPTS
+      - RELEASE_TYPE
+      - MAJOR_VERSION
+      - BUILDKITE_AGENT_ACCESS_TOKEN

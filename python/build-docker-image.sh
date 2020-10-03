@@ -16,7 +16,9 @@ PACKAGE_NAME=${PROJECT}
 echo "+++ Building docker image -> ${IMAGE_TAG}"
 
 # Login to private registry
+echo "logging into mti docker registry"
 docker login --username=${NEXUS_LOGIN_USER} --password=${NEXUS_LOGIN_PASSWORD} ${DOCKER_REGISTRY}
+echo "logged into mti docker registry"
 
 if test -f "Dockerfile"; then
         echo "Dockerfile exists."
