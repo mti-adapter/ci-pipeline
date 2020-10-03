@@ -25,6 +25,9 @@
             - BUILDKITE_JOB_ID
             - BUILDKITE_BUILD_ID
             - BUILDKITE_BUILD_NUMBER
+            - BUILD_OPTS
+            - RELEASE_TYPE
+            - MAJOR_VERSION
 
   - wait
 
@@ -35,3 +38,6 @@
       - BUILDKITE_JOB_ID
       - BUILDKITE_BUILD_ID
       - BUILDKITE_BUILD_NUMBER
+      - BUILD_OPTS
+      - RELEASE_TYPE
+      - MAJOR_VERSION

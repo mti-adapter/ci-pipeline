@@ -24,7 +24,7 @@ npm install
 npm install -g @angular/cli@~${NG_CLI_VERSION:-9.1.5}
 echo '+++ Running npm build'
 echo "Extra build options ${BUILD_OPTS:-}"
-npm run build -- --output-path=${TMP_DIRECTORY} -- ${BUILD_OPTS:-}
+npm run build -- --output-path=${TMP_DIRECTORY} ${BUILD_OPTS:-}
 tar czf ${DIST_DIRECTOR}/${PACKAGE_FILENAME}.tar.gz --directory=${TMP_DIRECTORY} .
 cd ${DIST_DIRECTOR}
 buildkite-agent artifact upload ${PACKAGE_FILENAME}.tar.gz s3://mti-ci-artifacts/${PROJECT}/${VERSION_NUMBER}
