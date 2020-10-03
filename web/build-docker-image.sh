@@ -36,5 +36,11 @@ if test -f "nginx.conf"; then
         cp .ci/web/nginx.conf ./pkg/nginx.conf
 fi
 
+if test -f "Dockerfile"; then
+        echo "Dockerfile exists."
+    else
+        cp ./pkg/Dockerfile ./Dockerfile
+fi
+
 docker build --tag ${IMAGE_TAG} ./pkg
 docker push ${IMAGE_TAG}
