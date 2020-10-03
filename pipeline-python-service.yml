@@ -5,5 +5,8 @@
       - BUILDKITE_JOB_ID
       - BUILDKITE_BUILD_ID
       - BUILDKITE_BUILD_NUMBER
+      - BUILD_OPTS
+      - RELEASE_TYPE
+      - MAJOR_VERSION
     agents:
       server: "dev1"
